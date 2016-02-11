@@ -7,6 +7,7 @@ package com.dale.pong;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -25,11 +26,12 @@ public class Pong implements ActionListener, KeyListener
     
     public static Pong pong;
     public int width = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height -50;
+    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
     public Renderer renderer;
     
     public Paddle player1;
     public Paddle player2;
+    public Ball ball;
     
     public boolean bot = false;
     public boolean z,s,up,down;
@@ -55,6 +57,7 @@ public class Pong implements ActionListener, KeyListener
 
     public void start()
     {
+        ball = new Ball(this);
         player1 = new Paddle(this,1);
         player2 = new Paddle(this,2);
     }
@@ -88,7 +91,7 @@ public class Pong implements ActionListener, KeyListener
     }
     
 
-    public void render(Graphics g) 
+    public void render(Graphics2D g) 
     {
         
         // Tennis court
@@ -113,6 +116,8 @@ public class Pong implements ActionListener, KeyListener
         
         player1.render(g);
         player2.render(g);
+        
+        ball.render(g);
     }
     
     public static void main(String[] args) 

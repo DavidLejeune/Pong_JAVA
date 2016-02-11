@@ -7,6 +7,7 @@ package com.dale.pong;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Paddle
 {
 
     public int paddleNumber;
-    public int x, y, width =75, height = 250;
+    public int x, y, width =50, height = 250;
     public int score; 
     
     public Paddle(Pong pong,int paddleNumber) 
@@ -37,7 +38,7 @@ public class Paddle
         
     }
     
-    public void render(Graphics g)
+    public void render(Graphics2D g)
     {
         
         g.setColor(Color.MAGENTA);
