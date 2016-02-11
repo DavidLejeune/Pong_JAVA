@@ -83,17 +83,17 @@ public class Ball
     public int checkCollision(Paddle paddle)
     {        
 
-        if (paddle.x < x + width)
+        if (this.x < paddle.x  + paddle.width && this.x + width > paddle.x && this.y < paddle.x  + paddle.height && this.y + height > paddle.y)
         {
-            if (paddle.y > y + height || paddle.y + height < y  )
-            {
-                return 1; //hit
-            }
-            else
-            {
-                return 2; //score
-            }
+            return 1;
         }
+        else if ((paddle.x > x +width && paddle.paddleNumber==1) ||  (paddle.x < x  && paddle.paddleNumber==2))
+        {
+            return 2;
+        }
+        
+        
+
         return 0; //nothing
     }
     
