@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -16,18 +18,21 @@ import javax.swing.Timer;
  *
  * @author David
  */
-public class Pong implements ActionListener
+public class Pong implements ActionListener, KeyListener 
 {
     
     public int updateCount=0;
     
     public static Pong pong;
     public int width = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height - 25;
+    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height ;
     public Renderer renderer;
     
     public Paddle player1;
     public Paddle player2;
+    
+    public boolean bot = false;
+    public boolean z,s,up,down;
     
     public Pong() 
     {
@@ -40,7 +45,7 @@ public class Pong implements ActionListener
         jframe.setVisible(true);
         jframe.add(renderer);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        jframe.addKeyListener(this);
         //drawing paddles
         start();
         
@@ -62,8 +67,24 @@ public class Pong implements ActionListener
     
     public void update()
     {
-        updateCount++;
-        System.out.println("Update nr " + updateCount);
+        //updateCount++;
+        //System.out.println("Update nr " + updateCount);
+        if(z)
+        {
+            player1.move(true);
+        }
+        if(s)
+        {
+            player1.move(false);
+        }
+        if(up)
+        {
+            player2.move(true);
+        }
+        if(down)
+        {
+            player2.move(false);
+        }
     }
     
 
@@ -97,6 +118,51 @@ public class Pong implements ActionListener
     public static void main(String[] args) 
     {
         pong = new Pong();
+    }
+    
+    public void keyTyped(KeyEvent e)
+    {
+        
+    }
+    public void keyPressed(KeyEvent e)
+    {
+        int id  = e.getKeyCode();
+        if(id==KeyEvent.VK_Z)
+        {
+            z = true;
+        }
+        if(id==KeyEvent.VK_S)
+        {
+            s = true;
+        }
+        if(id==KeyEvent.VK_UP)
+        {
+            up = true;
+        }
+        if(id==KeyEvent.VK_DOWN)
+        {
+            down = true;
+        }
+    }
+    public void keyReleased(KeyEvent e)
+    {
+        int id  = e.getKeyCode();
+        if(id==KeyEvent.VK_Z)
+        {
+            z = false;
+        }
+        if(id==KeyEvent.VK_S)
+        {
+            s = false;
+        }
+        if(id==KeyEvent.VK_UP)
+        {
+            up = false;
+        }
+        if(id==KeyEvent.VK_DOWN)
+        {
+            down = false;
+        }     
     }
 
 }

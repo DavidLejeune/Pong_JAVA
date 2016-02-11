@@ -29,7 +29,7 @@ public class Paddle
         }
         if (paddleNumber ==2 )
         {
-            this.x = pong.width - width -20;
+            this.x = pong.width - width -25;
         }
         this.y = pong.height /2 - this.height / 2;
         
@@ -40,12 +40,40 @@ public class Paddle
     public void render(Graphics g)
     {
         
-        
         g.setColor(Color.MAGENTA);
         g.fillRect(x,y,width,height);
+        
+        //g.setColor(Color.BLACK);
+        //g.drawRect(x,y,width,height);
     }
     
-    
+    public void move(boolean up)
+    {
+        int speed = 5;
+        
+        if(up)
+        {
+            if (y + height - speed < Pong.pong.height)
+            {
+                y-=10;
+            }
+            else
+            {
+                y = 0;
+            }
+        }
+        else
+        {
+            if (y + speed < Pong.pong.height)
+            {
+                y+=10;
+            }
+            else
+            {
+                y = Pong.pong.height;
+            }
+        }
+    }
     
     
 }
