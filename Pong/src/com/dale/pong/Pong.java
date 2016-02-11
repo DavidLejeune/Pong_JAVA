@@ -52,8 +52,7 @@ public class Pong implements ActionListener, KeyListener
         jframe.add(renderer);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.addKeyListener(this);
-        //drawing paddles
-        start();
+
         
         timer.start();
         
@@ -61,6 +60,7 @@ public class Pong implements ActionListener, KeyListener
 
     public void start()
     {
+        gameStatus=2;
         ball = new Ball(this);
         player1 = new Paddle(this,1);
         player2 = new Paddle(this,2);
@@ -96,6 +96,8 @@ public class Pong implements ActionListener, KeyListener
         {
             player2.move(false);
         }
+        
+        ball.update(player1, player2);
     }
     
 
@@ -201,14 +203,16 @@ public class Pong implements ActionListener, KeyListener
         if(id==KeyEvent.VK_SHIFT && gameStatus ==0)
         {
             bot = true;
-            gameStatus=2;
+            start();
+            //gameStatus=2;
         }
         
         if(id==KeyEvent.VK_SPACE)
         {
             if(gameStatus==0)
             {
-                gameStatus=2;
+                //gameStatus=2;
+                start();
                 bot = false;
             }
             else if(gameStatus==1)

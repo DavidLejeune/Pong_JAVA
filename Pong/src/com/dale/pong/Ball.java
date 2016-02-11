@@ -26,20 +26,45 @@ public class Ball
         this.random = new Random();
         this.x = pong.width / 2  - this.width /2;
         this.y = pong.height / 2  - this.height /2;
+        this.motionY = -2 + random.nextInt(4);
+        if (motionY==0)
+        {
+            motionY=1;
+        }
+        if(random.nextBoolean())
+        {
+            motionX = 1;
+        }
+        else
+        {
+            motionX = -1;
+        }
+        //this.motionX = -1 + random.nextInt(1);
         
     }
     
     public void update(Paddle paddle1, Paddle paddle2)
     {
+        this.x += motionX;
+        this.y += motionY;
+        
         if(checkCollision(paddle1)==1)
         {
             this.motionX = 1;
             this.motionY = -2 + random.nextInt(4);
+            if (motionY==0)
+            {
+                motionY=1;
+            }
         }
         else if(checkCollision(paddle2)==1)
         {
             this.motionX = -1;
             this.motionY = -2 + random.nextInt(4);
+            if (motionY==0)
+            {
+                motionY=1;
+            }
         }
         
         if(checkCollision(paddle1)==2)
