@@ -5,6 +5,7 @@
  */
 package com.dale.pong;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,8 +23,11 @@ public class Pong implements ActionListener
     
     public static Pong pong;
     public int width = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height - 50;
+    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height - 25;
     public Renderer renderer;
+    
+    public Paddle player1;
+    public Paddle player2;
     
     public Pong() 
     {
@@ -35,11 +39,20 @@ public class Pong implements ActionListener
         jframe.setSize(width,height);
         jframe.setVisible(true);
         jframe.add(renderer);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //drawing paddles
+        start();
         
         timer.start();
         
     }
 
+    public void start()
+    {
+        player1 = new Paddle(this,1);
+        player2 = new Paddle(this,2);
+    }
   
     public void actionPerformed(ActionEvent e) 
     {
@@ -56,7 +69,11 @@ public class Pong implements ActionListener
 
     public void render(Graphics g) 
     {
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,width,height);
         
+        player1.render(g);
+        player2.render(g);
     }
     
     public static void main(String[] args) 
