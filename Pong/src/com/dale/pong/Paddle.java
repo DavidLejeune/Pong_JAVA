@@ -49,13 +49,14 @@ public class Paddle
     
     public void move(boolean up)
     {
-        int speed = 5;
+        int speed = 15;
         
         if(up)
         {
-            if (y + height - speed < Pong.pong.height)
+            //if (y + height - speed > 0)
+            if (y  > 0)
             {
-                y-=10;
+                y-=speed;
             }
             else
             {
@@ -64,13 +65,13 @@ public class Paddle
         }
         else
         {
-            if (y + speed < Pong.pong.height)
+            if (y + height < Pong.pong.height-40)
             {
-                y+=10;
+                y+=speed;
             }
             else
             {
-                y = Pong.pong.height;
+                y = Pong.pong.height - height -40;
             }
         }
     }

@@ -25,7 +25,7 @@ public class Pong implements ActionListener, KeyListener
     
     public static Pong pong;
     public int width = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height ;
+    public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height -50;
     public Renderer renderer;
     
     public Paddle player1;
