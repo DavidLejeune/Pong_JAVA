@@ -29,7 +29,7 @@ public class Paddle
         }
         if (paddleNumber ==2 )
         {
-            this.x = pong.width - width -5;
+            this.x = pong.width - width -20;
         }
         this.y = pong.height /2 - this.height / 2;
         
@@ -41,7 +41,7 @@ public class Paddle
     {
         
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.MAGENTA);
         g.fillRect(x,y,width,height);
     }
     

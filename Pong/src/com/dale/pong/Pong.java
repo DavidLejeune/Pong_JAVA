@@ -69,8 +69,26 @@ public class Pong implements ActionListener
 
     public void render(Graphics g) 
     {
-        g.setColor(Color.BLACK);
+        
+        // Tennis court
+        g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height);
+        
+        g.setColor(Color.RED);
+        g.fillRect(20,20 ,width-60,height-90);
+        
+        
+        g.setColor(Color.WHITE);
+        g.fillRect(width/2 -  width/ 5 -20,0,20,height);
+        g.fillRect(width/2 +  width/ 5 -20,0,20,height);
+        g.fillRect(width/2 -  width/ 5 -20 ,height/2 -10, 2 * width/5,20);
+        
+        g.setColor(Color.WHITE);
+        g.fillRect(width/2 - 5,0,10,height);
+        g.setColor(Color.BLACK);
+        g.drawRect(width/2 - 5,0,10,height);        
+        
+        
         
         player1.render(g);
         player2.render(g);
