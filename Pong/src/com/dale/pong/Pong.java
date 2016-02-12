@@ -151,9 +151,9 @@ public class Pong implements ActionListener, KeyListener
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",1,20));
             g.drawString("Player 1", width /2 - 100 , 50);
-            g.drawString("" + player1.score,width /2 - 100 , 70);
+            g.drawString(String.valueOf(player1.score),width /2 - 70 , 70);
             g.drawString("Player 2", width /2 + 30 , 50);
-            g.drawString("" + player1.score,width  /2 + 30 , 70);
+            g.drawString(String.valueOf(player2.score),width  /2 + 60 , 70);
             //g.drawString("Press Shift to play vs CPU", width /2 - 250 , height / 2 - 40);
             
             
