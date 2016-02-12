@@ -6,7 +6,9 @@
 package com.dale.pong;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 /**
@@ -25,8 +27,14 @@ public class Ball
 	public Random random;
 
 	private Pong pong;
-
+        
+        public String playerScored ="";
+        public boolean scored = false;
+        
 	public int amountOfHits;
+        
+        
+        
 
 	public Ball(Pong pong)
 	{
@@ -39,7 +47,7 @@ public class Ball
 
 	public void update(Paddle paddle1, Paddle paddle2)
 	{
-		int speed = 5;
+		int speed = 7;
 
 		this.x += motionX * speed;
 		this.y += motionY * speed;
@@ -96,17 +104,24 @@ public class Ball
 		if (checkCollision(paddle1) == 2)
 		{
 			paddle2.score++;
+                        playerScored = "Player 1";
+                        //slaap(1000);
 			spawn();
 		}
 		else if (checkCollision(paddle2) == 2)
 		{
 			paddle1.score++;
+                        playerScored = "Player 2";
+                        //slaap(1000);
 			spawn();
 		}
 	}
+        
+       
 
 	public void spawn()
 	{
+                
 		this.amountOfHits = 0;
 		this.x = pong.width / 2 - this.width / 2;
 		this.y = pong.height / 2 - this.height / 2;
@@ -136,6 +151,7 @@ public class Ball
 		}
 		else if ((paddle.x > x && paddle.paddleNumber == 1) || (paddle.x < x - width && paddle.paddleNumber == 2))
 		{
+                        scored=true;
 			return 2; //score
 		}
 
@@ -150,9 +166,22 @@ public class Ball
         g.drawOval(x, y, width, height);
         
         
+
+        
+        
+        
         //g.drawArc(x, height / 2 ,25 , 25, 90, 90);
     }
 
+      private static void slaap (int millseconds){		 
+		try {
+			Thread.sleep(millseconds); 
+		} catch (InterruptedException e){ }
+	} 
+    
+    
+    
+    
 }
 
 

@@ -7,7 +7,6 @@ package com.dale.pong;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -23,6 +22,11 @@ import javax.swing.Timer;
  */
 public class Pong implements ActionListener, KeyListener 
 {
+    public boolean scoreChanged=false;
+    public int oldScore1;
+    public int oldScore2;
+    private int countdown;
+    
     
     public int updateCount=0;
     
@@ -133,7 +137,7 @@ public class Pong implements ActionListener, KeyListener
             g.setFont(new Font("Arial",1,80));
             g.drawString("PONG", width /2 -123,height / 4 +3);
             
-            g.setColor(Color.GRAY);
+            g.setColor(Color.BLUE);
             g.fillRect(width /4 , height / 4 + height / 10 , width / 2 , height / 5);
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial",1,40));
@@ -148,19 +152,57 @@ public class Pong implements ActionListener, KeyListener
         
         if(gameStatus==2 || gameStatus == 1)
         {
-            g.setColor(Color.WHITE);
+            g.setColor(Color.ORANGE);
             g.setFont(new Font("Arial",1,20));
             g.drawString("Player 1", width /2 - 100 , 50);
-            g.drawString(String.valueOf(player1.score),width /2 - 70 , 70);
             g.drawString("Player 2", width /2 + 30 , 50);
-            g.drawString(String.valueOf(player2.score),width  /2 + 60 , 70);
+            
+            g.setFont(new Font("Arial",1,24));
+            g.setColor(Color.YELLOW);
+            
+            g.drawString(String.valueOf(player1.score),width /2 - 70 , 75);
+            g.drawString(String.valueOf(player2.score),width  /2 + 60 , 75);
             //g.drawString("Press Shift to play vs CPU", width /2 - 250 , height / 2 - 40);
             
             
+            
+            if(oldScore1!=player1.score || oldScore2!=player2.score )
+            {
+                scoreChanged=true;
+                if(scoreChanged)
+                {
+                    System.out.println("changed");
+                    oldScore1=player1.score;
+                    oldScore2=player2.score  ;
+                    countdown=60;  
+                }
+                scoreChanged = false;
+            }
+            countdown--;
+            if(countdown < 61 && countdown > 0)
+            {
+                    g.setColor(Color.PINK);
+                    g.setFont(new Font("Arial",1,80));
+                    g.drawString("SCORE", width /2 -120,height / 2);
+                    g.setColor(Color.BLACK);
+                    g.setFont(new Font("Arial",1,80));
+                    g.drawString("SCORE", width /2 -123,height / 2 +3); 
+                    //slaap(100);
+            }
+            else
+            {
+                ball.render(g);  
+            }    
             player1.render(g);
-            player2.render(g);
-        
-            ball.render(g);       
+            player2.render(g);    
+                    
+            
+                
+           
+            
+            
+            
+                
         }
         
         if(gameStatus==1 )
@@ -258,5 +300,13 @@ public class Pong implements ActionListener, KeyListener
         }    
   
     }
+    
+    
+          private static void slaap (int millseconds){		 
+		try {
+			Thread.sleep(millseconds); 
+		} catch (InterruptedException e){ }
+	} 
+    
 
 }
