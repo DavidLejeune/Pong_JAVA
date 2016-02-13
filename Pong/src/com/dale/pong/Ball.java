@@ -27,14 +27,8 @@ public class Ball
 	public Random random;
 
 	private Pong pong;
-        
-        public String playerScored ="";
-        public boolean scored = false;
-        
+
 	public int amountOfHits;
-        
-        
-        
 
 	public Ball(Pong pong)
 	{
@@ -47,12 +41,12 @@ public class Ball
 
 	public void update(Paddle paddle1, Paddle paddle2)
 	{
-		int speed = 7;
+		int speed = 5;
 
 		this.x += motionX * speed;
 		this.y += motionY * speed;
 
-		if (this.y + height - motionY + 25 > pong.height  || this.y + motionY < 0)
+		if (this.y + height - motionY > pong.height - 50 || this.y + motionY < 0)
 		{
 			if (this.motionY < 0)
 			{
@@ -67,7 +61,7 @@ public class Ball
 			else
 			{
 				this.motionY = -random.nextInt(4);
-				this.y = pong.height - height - 50;
+				this.y = pong.height - height - 50 ;
 
 				if (motionY == 0)
 				{
@@ -104,24 +98,17 @@ public class Ball
 		if (checkCollision(paddle1) == 2)
 		{
 			paddle2.score++;
-                        playerScored = "Player 1";
-                        //slaap(1000);
 			spawn();
 		}
 		else if (checkCollision(paddle2) == 2)
 		{
 			paddle1.score++;
-                        playerScored = "Player 2";
-                        //slaap(1000);
 			spawn();
 		}
 	}
-        
-       
 
 	public void spawn()
 	{
-                
 		this.amountOfHits = 0;
 		this.x = pong.width / 2 - this.width / 2;
 		this.y = pong.height / 2 - this.height / 2;
@@ -151,7 +138,6 @@ public class Ball
 		}
 		else if ((paddle.x > x && paddle.paddleNumber == 1) || (paddle.x < x - width && paddle.paddleNumber == 2))
 		{
-                        scored=true;
 			return 2; //score
 		}
 
