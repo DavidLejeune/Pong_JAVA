@@ -416,7 +416,7 @@ public class Pong implements ActionListener, KeyListener
 
                         
                             String hit = "hit";
-                            if (ball.amountOfHits==1)
+                            if (ball.prevamountOfHits==1)
                             {
                                 
                             }
@@ -427,9 +427,9 @@ public class Pong implements ActionListener, KeyListener
                         
                             g.setFont(new Font("Arial",1,80));
                             g.setColor(Color.BLACK);
-                            g.drawString(String.valueOf(ball.amountOfHits)+ " " + hit,width  /2 - 100  , height -75);
+                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " " + hit,width  /2 - 100  , height -75);
                             g.setFont(new Font("Arial",1,80));
-                            if (ball.amountOfHits%5==0)
+                            if (ball.prevamountOfHits%5==0)
                             {
                                 g.setColor(Color.BLUE);
                                 
@@ -439,7 +439,7 @@ public class Pong implements ActionListener, KeyListener
                                 g.setColor(Color.YELLOW);
                                 
                             }
-                            g.drawString(String.valueOf(ball.amountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
+                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
                         
                         
                         
