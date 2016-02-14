@@ -55,9 +55,13 @@ public class Pong implements ActionListener, KeyListener
 	public JFrame jframe;
         
         public int highscore=0;
+        private String[] applauseArray;
 
 	public Pong()
 	{
+            
+                applauseArray = new String[] {"app-5.wav","app-6.wav","app-7.wav","app-8.wav","app-9.wav","app-10.wav","app-11.wav","app-12.wav","app-13","app-14"};
+        
 		Timer timer = new Timer(20, this);
 		random = new Random();
 
@@ -311,6 +315,15 @@ public class Pong implements ActionListener, KeyListener
                                         scoreChanged = false;
 
                                         countdown=0; 
+                                        
+                                        //applause when won
+                                        Random r = new Random();
+                                        int Low = 0;
+                                        int High = 10;
+                                        int Result = r.nextInt(High-Low) + Low;
+                                        String iValue2 = applauseArray[Result];
+                                        Sound.play(iValue2); 
+                                        System.out.println("" + iValue2);
                                     }
                                     else
                                     {
@@ -388,6 +401,11 @@ public class Pong implements ActionListener, KeyListener
 
 		if (gameStatus == 3)
 		{
+                    
+                    
+                    
+
+                    
                     oldScore1=10;
                     countdown=0;
                     g.setColor(Color.YELLOW);
@@ -451,6 +469,13 @@ public class Pong implements ActionListener, KeyListener
                         g.setFont(new Font("Arial",1,40));
                         //g.drawString("Press Space to Play Again", width /2 - 225 , height / 2 - 80);
                         g.drawString("Press ESC for Menu", width /2 - 170 , height / 2 - 40);   
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
 		}
 	}

@@ -5,6 +5,7 @@
  */
 package com.dale.pong;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -30,13 +31,18 @@ public class Ball
 
 	public int amountOfHits;
 	public int prevamountOfHits;
+        private String[] soundArray;
 
 	public Ball(Pong pong)
 	{
 		this.pong = pong;
 
 		this.random = new Random();
+                
+                soundArray = new String[] {"pong0.wav","pong1.wav","pong2.wav","pong3.wav","pong4.wav","pong5.wav","pong6.wav","pong7.wav","pong8.wav","pong9.wav"};
+        
 
+ 
 		spawn();
 	}
 
@@ -82,6 +88,16 @@ public class Ball
 			}
 
 			amountOfHits++;
+                        Random r = new Random();
+                        int Low = 0;
+                        int High = 10;
+                        int Result = r.nextInt(High-Low) + Low;
+                        String iValue2 = soundArray[Result];
+                        
+                        Sound.play(iValue2); 
+                        System.out.println("" + iValue2);
+                        //AudioClip clip = java.applet.Applet.newAudioClip(getClass().getResource(iValue2));
+                        //clip.play();
 		}
 		else if (checkCollision(paddle2) == 1)
 		{
@@ -92,14 +108,26 @@ public class Ball
 			{
 				motionY = 1;
 			}
-
+                            
 			amountOfHits++;
+                        Random r = new Random();
+                        int Low = 0;
+                        int High = 10;
+                        int Result = r.nextInt(High-Low) + Low;
+                        String iValue2 = soundArray[Result];
+                        Sound.play(iValue2); 
+                        System.out.println("" + iValue2);
+                        //AudioClip clip = java.applet.Applet.newAudioClip(getClass().getResource(iValue2));
+                        //clip.play();
 		}
 
 		if (checkCollision(paddle1) == 2)
 		{
                         prevamountOfHits = amountOfHits;
+			amountOfHits++;
+                        
 			paddle2.score++;
+  
                         
 			spawn();
 		}
