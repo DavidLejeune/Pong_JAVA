@@ -54,7 +54,7 @@ public class Pong implements ActionListener, KeyListener
 
 	public JFrame jframe;
         
-        public int highscore;
+        public int highscore=0;
 
 	public Pong()
 	{
@@ -290,6 +290,7 @@ public class Pong implements ActionListener, KeyListener
                                 
                             }
                             g.drawString(String.valueOf(ball.amountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
+                            
                         }
                         
                         if(oldScore1!=player1.score || oldScore2!=player2.score )
@@ -329,6 +330,20 @@ public class Pong implements ActionListener, KeyListener
                         //System.out.println("" + countdown);
                         if(countdown < 61 && countdown > 0)
                         {
+                            
+                                if(ball.prevamountOfHits >= highscore)
+                                {
+                                    g.setColor(Color.BLUE);
+                                    g.setFont(new Font("Arial",1,80));
+                                    g.drawString("HIGH", width /2 -100,height / 2 -82);
+                                    g.setColor(Color.PINK);
+                                    g.setFont(new Font("Arial",1,80));
+                                    g.drawString("HIGH", width /2 -103,height / 2 +3 -80); 
+                                    highscore = ball.prevamountOfHits ;
+                                }
+                            
+                            
+                            
                                 g.setColor(Color.PINK);
                                 g.setFont(new Font("Arial",1,80));
                                 g.drawString("SCORE", width /2 -120,height / 2);
@@ -337,30 +352,30 @@ public class Pong implements ActionListener, KeyListener
                                 g.drawString("SCORE", width /2 -123,height / 2 +3); 
                                 //slaap(100);
                                 
-                            String hit = "hit";
-                            if (ball.prevamountOfHits==1)
-                            {
-                                
-                            }
-                            else
-                            {
-                                hit = "hits";
-                            }
-                            g.setFont(new Font("Arial",1,80));
-                            g.setColor(Color.BLACK);
-                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " " + hit,width  /2 - 100  , height -75);
-                            g.setFont(new Font("Arial",1,80));
-                            if (ball.prevamountOfHits%5==0)
-                            {
-                                g.setColor(Color.BLUE);
-                                
-                            }
-                            else
-                            {
-                                g.setColor(Color.YELLOW);
-                                
-                            }
-                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
+                                String hit = "hit";
+                                if (ball.prevamountOfHits==1)
+                                {
+
+                                }
+                                else
+                                {
+                                    hit = "hits";
+                                }
+                                g.setFont(new Font("Arial",1,80));
+                                g.setColor(Color.BLACK);
+                                g.drawString(String.valueOf(ball.prevamountOfHits)+ " " + hit,width  /2 - 100  , height -75);
+                                g.setFont(new Font("Arial",1,80));
+                                if (ball.prevamountOfHits%5==0)
+                                {
+                                    g.setColor(Color.BLUE);
+
+                                }
+                                else
+                                {
+                                    g.setColor(Color.YELLOW);
+
+                                }
+                                g.drawString(String.valueOf(ball.prevamountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
                         }
                         else
                         {
