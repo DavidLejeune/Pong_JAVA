@@ -53,6 +53,8 @@ public class Pong implements ActionListener, KeyListener
 	public Random random;
 
 	public JFrame jframe;
+        
+        public int highscore;
 
 	public Pong()
 	{
@@ -148,15 +150,15 @@ public class Pong implements ActionListener, KeyListener
 
 				if (botDifficulty == 0)
 				{
-					botCooldown = 20;
+					botCooldown = 21;
 				}
 				if (botDifficulty == 1)
 				{
-					botCooldown = 15;
+					botCooldown = 14;
 				}
 				if (botDifficulty == 2)
 				{
-					botCooldown = 10;
+					botCooldown = 7;
 				}
 			}
 		}
@@ -295,7 +297,7 @@ public class Pong implements ActionListener, KeyListener
 //                            System.out.println(""+scoreLimit);
 //                            System.out.println(""+player1.score);
 //                            System.out.println(""+player2.score);
-                            if(player2.score==0 && player2.score==0)
+                            if(player1.score==0 && player2.score==0)
                                 {
                                     
                                 }
@@ -334,6 +336,31 @@ public class Pong implements ActionListener, KeyListener
                                 g.setFont(new Font("Arial",1,80));
                                 g.drawString("SCORE", width /2 -123,height / 2 +3); 
                                 //slaap(100);
+                                
+                            String hit = "hit";
+                            if (ball.prevamountOfHits==1)
+                            {
+                                
+                            }
+                            else
+                            {
+                                hit = "hits";
+                            }
+                            g.setFont(new Font("Arial",1,80));
+                            g.setColor(Color.BLACK);
+                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " " + hit,width  /2 - 100  , height -75);
+                            g.setFont(new Font("Arial",1,80));
+                            if (ball.prevamountOfHits%5==0)
+                            {
+                                g.setColor(Color.BLUE);
+                                
+                            }
+                            else
+                            {
+                                g.setColor(Color.YELLOW);
+                                
+                            }
+                            g.drawString(String.valueOf(ball.prevamountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
                         }
                         else
                         {
@@ -372,6 +399,36 @@ public class Pong implements ActionListener, KeyListener
 				g.drawString("Player " + playerWon + " Wins!", width / 2 - 273, 2 * height /3+3);
 			}
 
+                        
+                            String hit = "hit";
+                            if (ball.amountOfHits==1)
+                            {
+                                
+                            }
+                            else
+                            {
+                                hit = "hits";
+                            }
+                        
+                            g.setFont(new Font("Arial",1,80));
+                            g.setColor(Color.BLACK);
+                            g.drawString(String.valueOf(ball.amountOfHits)+ " " + hit,width  /2 - 100  , height -75);
+                            g.setFont(new Font("Arial",1,80));
+                            if (ball.amountOfHits%5==0)
+                            {
+                                g.setColor(Color.BLUE);
+                                
+                            }
+                            else
+                            {
+                                g.setColor(Color.YELLOW);
+                                
+                            }
+                            g.drawString(String.valueOf(ball.amountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
+                        
+                        
+                        
+                        
 
                         g.setColor(Color.BLUE);
                         g.fillRect(width /4 , height / 4 + height / 10 , width / 2 , height / 5);
@@ -467,6 +524,7 @@ public class Pong implements ActionListener, KeyListener
 		}
 		else if (id == KeyEvent.VK_SPACE)
 		{
+                    
 			if (gameStatus == 0 || gameStatus == 3)
 			{
 				if (!selectingDifficulty)

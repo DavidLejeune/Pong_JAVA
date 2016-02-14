@@ -29,6 +29,7 @@ public class Ball
 	private Pong pong;
 
 	public int amountOfHits;
+	public int prevamountOfHits;
 
 	public Ball(Pong pong)
 	{
@@ -97,11 +98,14 @@ public class Ball
 
 		if (checkCollision(paddle1) == 2)
 		{
+                        prevamountOfHits = amountOfHits;
 			paddle2.score++;
+                        
 			spawn();
 		}
 		else if (checkCollision(paddle2) == 2)
 		{
+                        prevamountOfHits = amountOfHits;
 			paddle1.score++;
 			spawn();
 		}
