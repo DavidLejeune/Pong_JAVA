@@ -22,17 +22,17 @@ import javax.swing.Timer;
  *
  * @author David
  */
-public class Pong implements ActionListener, KeyListener 
+public class Pong implements ActionListener, KeyListener
 {
 	public static Pong pong;
-        
+
         public final int ballAdjust = 50;
 
         public boolean scoreChanged=false;
         public int oldScore1;
         public int oldScore2;
         private int countdown;
-	
+
         public int width = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
         public int height = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 
@@ -55,15 +55,16 @@ public class Pong implements ActionListener, KeyListener
 	public Random random;
 
 	public JFrame jframe;
-        
+
         public int highscore=0;
         private String[] applauseArray;
 
 	public Pong()
 	{
-            
+
                 applauseArray = new String[] {"app-5.wav","app-6.wav","app-7.wav","app-8.wav","app-9.wav","app-10.wav","app-11.wav","app-12.wav","app-13.wav","app-14.wav"};
-        
+
+
 		Timer timer = new Timer(20, this);
 		random = new Random();
 
@@ -71,17 +72,25 @@ public class Pong implements ActionListener, KeyListener
 
 		renderer = new Renderer();
 
+
 //		jframe.setSize(width + 15, height + 35);
 //		jframe.setVisible(true);
+
+		jframe.setSize(width + 15, height + 35);
+		jframe.setVisible(true);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.add(renderer);
 		jframe.addKeyListener(this);
-                
- //               This set full screen                
+
+ //               This set full screen
                 jframe.setUndecorated(true);
                 jframe.pack();
                 jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 jframe.setVisible(true);
+//                jframe.setUndecorated(true);
+//                jframe.pack();
+//                jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//                jframe.setVisible(true);
 
 		timer.start();
 	}
@@ -174,54 +183,69 @@ public class Pong implements ActionListener, KeyListener
 
 	public void render(Graphics2D g)
 	{
-            
-            
+
+
         // Tennis court
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height+ballAdjust);
-        
+
         g.setColor(Color.RED);
         g.fillRect(20,20 ,width-50,height);
-        
-        
+
+
         g.setColor(Color.WHITE);
         g.fillRect(width/2 -  width/ 5 -20,0,20,height+ballAdjust);
         g.fillRect(width/2 +  width/ 5 -20,0,20,height+ballAdjust);
         g.fillRect(width/2 -  width/ 5 -20 ,height/2 -10, 2 * width/5,20);
-        
+
         g.setColor(Color.WHITE);
         g.fillRect(width/2 - 5,0,10,height+ballAdjust);
         g.setColor(Color.BLACK);
-        g.drawRect(width/2 - 5,0,10,height+ballAdjust);   
-                
-                
-                
-                
-                
+        g.drawRect(width/2 - 5,0,10,height+ballAdjust);
+        g.fillRect(0,0,width,height);
+
+        g.setColor(Color.RED);
+        g.fillRect(20,20 ,width-50,height-80);
+
+
+        g.setColor(Color.WHITE);
+        g.fillRect(width/2 -  width/ 5 -20,0,20,height);
+        g.fillRect(width/2 +  width/ 5 -20,0,20,height);
+        g.fillRect(width/2 -  width/ 5 -20 ,height/2 -10, 2 * width/5,20);
+
+        g.setColor(Color.WHITE);
+        g.fillRect(width/2 - 5,0,10,height);
+        g.setColor(Color.BLACK);
+        g.drawRect(width/2 - 5,0,10,height);
+
+
+
+
+
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if (gameStatus == 0)
 		{
-                    
+
 //                    g.setColor(Color.BLACK);
 //                    g.setFont(new Font("Arial",1,60));
 //                    g.drawString("VIVES", width /2 -95,height / 6);
 //                    g.setColor(Color.PINK);
 //                    g.setFont(new Font("Arial",1,60));
 //                    g.drawString("VIVES", width /2 -98,height / 6 +3);
-                    
-                    
+
+
                     g.setColor(Color.YELLOW);
                     g.setFont(new Font("Arial",1,80));
                     g.drawString("PONG", width /2 -120,height / 4);
                     g.setColor(Color.BLACK);
                     g.setFont(new Font("Arial",1,80));
                     g.drawString("PONG", width /2 -123,height / 4 +3);
-                    
+
                     //g.setColor(new Color ((int) ( 16777216 * Math.random())));
                     g.setColor(new Color ((int) ( 125 * Math.random())));
                     g.setFont(new Font("Arial",1,16));
-                    g.drawString("\u00a9 DaLe 2016", width  - 150 ,height + 10);
+                    g.drawString("\u00a9 DaLe 2016", width  - 150 ,height - 70);
 
                     if (!selectingDifficulty)
                     {
@@ -269,13 +293,13 @@ public class Pong implements ActionListener, KeyListener
 
                         g.drawString(String.valueOf(player1.score),width /2 - 70 , 75);
                         g.drawString(String.valueOf(player2.score),width  /2 + 60 , 75);
-                        
+
                         if(ball.amountOfHits!=0)
                         {
                             String hit = "hit";
                             if (ball.amountOfHits==1)
                             {
-                                
+
                             }
                             else
                             {
@@ -288,17 +312,17 @@ public class Pong implements ActionListener, KeyListener
                             if (ball.amountOfHits%5==0)
                             {
                                 g.setColor(Color.BLUE);
-                                
+
                             }
                             else
                             {
                                 g.setColor(Color.YELLOW);
-                                
+
                             }
                             g.drawString(String.valueOf(ball.amountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
-                            
+
                         }
-                        
+
                         if(oldScore1!=player1.score || oldScore2!=player2.score )
                         {
 //                            System.out.println(""+scoreLimit);
@@ -306,7 +330,7 @@ public class Pong implements ActionListener, KeyListener
 //                            System.out.println(""+player2.score);
                             if(player1.score==0 && player2.score==0)
                                 {
-                                    
+
                                 }
                                 else
                                 {
@@ -316,15 +340,15 @@ public class Pong implements ActionListener, KeyListener
 
                                         scoreChanged = false;
 
-                                        countdown=0; 
-                                        
+                                        countdown=0;
+
                                         //applause when won
                                         Random r = new Random();
                                         int Low = 0;
                                         int High = 10;
                                         int Result = r.nextInt(High-Low) + Low;
                                         String iValue2 = applauseArray[Result];
-                                        Sound.play(iValue2); 
+                                        Sound.play(iValue2);
                                         System.out.println("" + iValue2);
                                     }
                                     else
@@ -334,18 +358,18 @@ public class Pong implements ActionListener, KeyListener
                                         {
                                             oldScore1=player1.score;
                                             oldScore2=player2.score  ;
-                                            countdown=60;  
+                                            countdown=60;
                                         }
                                         scoreChanged = false;
                                     }
                             }
-                            
+
                         }
                         countdown--;
                         //System.out.println("" + countdown);
                         if(countdown < 61 && countdown > 0)
                         {
-                            
+
                                 if(ball.prevamountOfHits >= highscore)
                                 {
                                     g.setColor(Color.BLUE);
@@ -353,20 +377,20 @@ public class Pong implements ActionListener, KeyListener
                                     g.drawString("HIGH", width /2 -100,height / 2 -82);
                                     g.setColor(Color.PINK);
                                     g.setFont(new Font("Arial",1,80));
-                                    g.drawString("HIGH", width /2 -103,height / 2 +3 -80); 
+                                    g.drawString("HIGH", width /2 -103,height / 2 +3 -80);
                                     highscore = ball.prevamountOfHits ;
                                 }
-                            
-                            
-                            
+
+
+
                                 g.setColor(Color.PINK);
                                 g.setFont(new Font("Arial",1,80));
                                 g.drawString("SCORE", width /2 -120,height / 2);
                                 g.setColor(Color.BLACK);
                                 g.setFont(new Font("Arial",1,80));
-                                g.drawString("SCORE", width /2 -123,height / 2 +3); 
+                                g.drawString("SCORE", width /2 -123,height / 2 +3);
                                 //slaap(100);
-                                
+
                                 String hit = "hit";
                                 if (ball.prevamountOfHits==1)
                                 {
@@ -394,20 +418,20 @@ public class Pong implements ActionListener, KeyListener
                         }
                         else
                         {
-                            ball.render(g);  
-                        }  
+                            ball.render(g);
+                        }
                         player1.render(g);
-                        player2.render(g); 
-                          
+                        player2.render(g);
+
 		}
 
 		if (gameStatus == 3)
 		{
-                    
-                    
-                    
 
-                    
+
+
+
+
                     oldScore1=10;
                     countdown=0;
                     g.setColor(Color.YELLOW);
@@ -416,7 +440,7 @@ public class Pong implements ActionListener, KeyListener
                     g.setColor(Color.BLACK);
                     g.setFont(new Font("Arial",1,80));
                     g.drawString("PONG", width /2 -123,height / 4 +3);
-        
+
 
 
 			if (bot && playerWon == 2)
@@ -434,17 +458,17 @@ public class Pong implements ActionListener, KeyListener
 				g.drawString("Player " + playerWon + " Wins!", width / 2 - 273, 2 * height /3+3);
 			}
 
-                        
+
                             String hit = "hit";
                             if (ball.prevamountOfHits==1)
                             {
-                                
+
                             }
                             else
                             {
                                 hit = "hits";
                             }
-                        
+
                             g.setFont(new Font("Arial",1,80));
                             g.setColor(Color.BLACK);
                             g.drawString(String.valueOf(ball.prevamountOfHits)+ " " + hit,width  /2 - 100  , height -75);
@@ -452,32 +476,32 @@ public class Pong implements ActionListener, KeyListener
                             if (ball.prevamountOfHits%5==0)
                             {
                                 g.setColor(Color.BLUE);
-                                
+
                             }
                             else
                             {
                                 g.setColor(Color.YELLOW);
-                                
+
                             }
                             g.drawString(String.valueOf(ball.prevamountOfHits)+ " "+  hit,width  /2 - 103  , height -72);
-                        
-                        
-                        
-                        
+
+
+
+
 
                         g.setColor(Color.BLUE);
                         g.fillRect(width /4 , height / 4 + height / 10 , width / 2 , height / 5);
                         g.setColor(Color.WHITE);
                         g.setFont(new Font("Arial",1,40));
                         //g.drawString("Press Space to Play Again", width /2 - 225 , height / 2 - 80);
-                        g.drawString("Press ESC for Menu", width /2 - 170 , height / 2 - 40);   
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                        g.drawString("Press ESC for Menu", width /2 - 170 , height / 2 - 40);
+
+
+
+
+
+
+
 
 		}
 	}
@@ -566,7 +590,7 @@ public class Pong implements ActionListener, KeyListener
 		}
 		else if (id == KeyEvent.VK_SPACE)
 		{
-                    
+
 			if (gameStatus == 0 || gameStatus == 3)
 			{
 				if (!selectingDifficulty)
@@ -619,13 +643,13 @@ public class Pong implements ActionListener, KeyListener
 	{
 
 	}
-    
-    
-          private static void slaap (int millseconds){		 
+
+
+          private static void slaap (int millseconds){
 		try {
-			Thread.sleep(millseconds); 
+			Thread.sleep(millseconds);
 		} catch (InterruptedException e){ }
-	} 
-    
+	}
+
 
 }
