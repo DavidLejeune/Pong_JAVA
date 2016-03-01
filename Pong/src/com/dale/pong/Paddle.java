@@ -5,6 +5,7 @@
  */
 package com.dale.pong;
 
+import static com.dale.pong.Pong.pong;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -66,13 +67,13 @@ public class Paddle
         }
         else
         {
-            if (y + height < Pong.pong.height+50)
+            if (y + height < Pong.pong.height+pong.ballAdjust)
             {
                 y+=speed;
             }
             else
             {
-                y = Pong.pong.height - height +50;
+                y = Pong.pong.height - height +pong.ballAdjust;
             }
         }
     }

@@ -53,7 +53,7 @@ public class Ball
 		this.x += motionX * speed;
 		this.y += motionY * speed;
 
-		if (this.y + height - motionY > pong.height +50 || this.y + motionY < 0)
+		if (this.y + height - motionY > pong.height + pong.ballAdjust || this.y + motionY < 0)
 		{
 			if (this.motionY < 0)
 			{
@@ -68,7 +68,7 @@ public class Ball
 			else
 			{
 				this.motionY = -random.nextInt(4);
-				this.y = pong.height - height +50;
+				this.y = pong.height - height + pong.ballAdjust;
 
 				if (motionY == 0)
 				{

@@ -25,6 +25,8 @@ import javax.swing.Timer;
 public class Pong implements ActionListener, KeyListener 
 {
 	public static Pong pong;
+        
+        public final int ballAdjust = 50;
 
         public boolean scoreChanged=false;
         public int oldScore1;
@@ -69,7 +71,7 @@ public class Pong implements ActionListener, KeyListener
 
 		renderer = new Renderer();
 
-		jframe.setSize(width + 15, height + 35);
+//		jframe.setSize(width + 15, height + 35);
 //		jframe.setVisible(true);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.add(renderer);
@@ -176,21 +178,21 @@ public class Pong implements ActionListener, KeyListener
             
         // Tennis court
         g.setColor(Color.WHITE);
-        g.fillRect(0,0,width,height+50);
+        g.fillRect(0,0,width,height+ballAdjust);
         
         g.setColor(Color.RED);
         g.fillRect(20,20 ,width-50,height);
         
         
         g.setColor(Color.WHITE);
-        g.fillRect(width/2 -  width/ 5 -20,0,20,height+50);
-        g.fillRect(width/2 +  width/ 5 -20,0,20,height+50);
+        g.fillRect(width/2 -  width/ 5 -20,0,20,height+ballAdjust);
+        g.fillRect(width/2 +  width/ 5 -20,0,20,height+ballAdjust);
         g.fillRect(width/2 -  width/ 5 -20 ,height/2 -10, 2 * width/5,20);
         
         g.setColor(Color.WHITE);
-        g.fillRect(width/2 - 5,0,10,height+50);
+        g.fillRect(width/2 - 5,0,10,height+ballAdjust);
         g.setColor(Color.BLACK);
-        g.drawRect(width/2 - 5,0,10,height+50);   
+        g.drawRect(width/2 - 5,0,10,height+ballAdjust);   
                 
                 
                 
