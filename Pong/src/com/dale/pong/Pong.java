@@ -26,7 +26,7 @@ public class Pong implements ActionListener, KeyListener
 {
 	public static Pong pong;
         
-        public final int ballAdjust = 50;
+        public final int ballAdjust = +5;
 
         public boolean scoreChanged=false;
         public int oldScore1;
@@ -176,12 +176,12 @@ public class Pong implements ActionListener, KeyListener
 	{
             
             
-        // Tennis court
+        // Tennis court);
         g.setColor(Color.WHITE);
         g.fillRect(0,0,width,height+ballAdjust);
         
         g.setColor(Color.RED);
-        g.fillRect(20,20 ,width-50,height);
+        g.fillRect(20,20 ,width-ballAdjust,height+ballAdjust-50);
         
         
         g.setColor(Color.WHITE);
@@ -221,14 +221,14 @@ public class Pong implements ActionListener, KeyListener
                     //g.setColor(new Color ((int) ( 16777216 * Math.random())));
                     g.setColor(new Color ((int) ( 125 * Math.random())));
                     g.setFont(new Font("Arial",1,16));
-                    g.drawString("\u00a9 DaLe 2016", width  - 150 ,height + 10);
+                    g.drawString("\u00a9 DaLe 2016", width  - 150 ,height - 10);
 
                     if (!selectingDifficulty)
                     {
                         g.setColor(Color.BLUE);
                         g.fillRect(width /4 , height / 4 + height / 10 , width / 2 , height / 5);
                         g.setColor(Color.WHITE);
-                        g.setFont(new Font("Arial",1,40));
+                        g.setFont(new Font("Arial",1,30));
                         g.drawString("Press Space to play", width /2 - 200 , height / 2 - 100);
                         g.drawString("Press Shift to play vs CPU", width /2 - 250 , height / 2 - 40);
                         g.drawString("<< Score Limit: " + scoreLimit + " >>", width /2 - 175, height / 2 + 20);
@@ -242,7 +242,7 @@ public class Pong implements ActionListener, KeyListener
 			g.setColor(Color.BLUE);
                         g.fillRect(width /4 , height / 4 + height / 10 , width / 2 , height / 5);
                         g.setColor(Color.WHITE);
-                        g.setFont(new Font("Arial",1,40));
+                        g.setFont(new Font("Arial",1,30));
 			g.drawString("<< Bot Difficulty: " + string + " >>", width /2 - 225 , height / 2 - 80);
 			g.drawString("Press Space to Play", width /2 - 150, height / 2 - 20);
 		}
@@ -559,7 +559,7 @@ public class Pong implements ActionListener, KeyListener
 		{
 			gameStatus = 0;
 		}
-		else if (id == KeyEvent.VK_SHIFT && gameStatus == 0)
+		else if (id == KeyEvent.VK_P && gameStatus == 0)
 		{
 			bot = true;
 			selectingDifficulty = true;
